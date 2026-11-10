@@ -1,5 +1,6 @@
 let row_cols = 15;
 let tile_dims = 25; // pixels (hardcoded in css)
+let game_over = false;
 let tiles = [];
 let bombs = [    // row, column (both start at 0)
     [0,0],
@@ -21,6 +22,9 @@ function createBoard() {
         tile.classList.add("tile");
         // Add event listener for tiles
         tile.addEventListener("click", (event) => {
+            if (game_over) 
+                return;
+
             if (event.ctrlKey || event.metaKey) {
                 event.preventDefault();
                 placeOrRemoveFlag(tile);
@@ -29,6 +33,9 @@ function createBoard() {
             }
         });
         tile.addEventListener("contextmenu", (e) => {  // right click
+            if (game_over) 
+                return;
+
             e.preventDefault();
             placeOrRemoveFlag(tile);
         });
@@ -71,6 +78,9 @@ function mineTile(tile) {
     tile.classList.add("clicked");
     if (checkForBomb(tile)) {
         tile.classList.add("bomb");
+        tile.textContent = "B";
+        game_over = true;
+        document.getElementById("placeholder").textContent = "Game Over!";
     } else {
         tile.textContent = nearbyBombs > 0 ? nearbyBombs : "";
     }
@@ -136,8 +146,10 @@ function resetBoard() {
         tile.classList.remove("flag");
         tile.textContent = "";
     });
-}
 
+    document.getElementById("placeholder").textContent = "";
+    game_over = false;
+}
 
 
 // Run commands

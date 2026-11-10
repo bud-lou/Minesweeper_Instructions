@@ -14,8 +14,9 @@
 }
 
 #board {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
 .clicked:not(.bomb) {
@@ -30,4 +31,9 @@
 .flag {
     background-color: green;
     color: white;
+}
+
+#placeholder {
+    font-size: 20px;
+    font-weight: bold;
 }
