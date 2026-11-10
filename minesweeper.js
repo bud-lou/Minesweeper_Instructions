@@ -20,7 +20,14 @@ function createBoard() {
         let tile = document.createElement("div");
         tile.classList.add("tile");
         // Add event listener for tiles
-        tile.addEventListener("click", () => mineTile(tile));
+        tile.addEventListener("click", (event) => {
+            if (event.ctrlKey || event.metaKey) {
+                event.preventDefault();
+                placeOrRemoveFlag(tile);
+            } else {
+                mineTile(tile);
+            }
+        });
         tile.addEventListener("contextmenu", (e) => {  // right click
             e.preventDefault();
             placeOrRemoveFlag(tile);

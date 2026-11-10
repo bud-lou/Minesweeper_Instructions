@@ -20,6 +20,7 @@
 
 .clicked:not(.bomb) {
     background-color: #bdbdbd;
+    cursor: default;
 }
 
 .bomb {
