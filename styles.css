@@ -1,0 +1,32 @@
+.tile:nth-child(odd):not(.clicked, .flag) {
+    background-color: #dad9d9;
+}
+
+.tile:nth-child(even):not(.clicked, .flag) {
+    background-color: #eee;
+}
+
+.tile {
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    padding-top: 3px;
+}
+
+#board {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.clicked:not(.bomb) {
+    background-color: #bdbdbd;
+}
+
+.bomb {
+    background-color: red;
+}
+
+.flag {
+    background-color: green;
+    color: white;
+}
